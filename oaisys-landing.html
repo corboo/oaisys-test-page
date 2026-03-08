@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAISYS - Your AI Specialist Team</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .specialists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .specialist-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specialist-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        .specialist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .specialist-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .specialist-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .specialist-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+            color: #2c3e50;
+        }
+
+        .specialist-domain {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .specialist-description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .specialist-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Individual specialist colors */
+        .claire { --accent-color: #e74c3c; }
+        .olly { --accent-color: #f39c12; }
+        .pennie { --accent-color: #27ae60; }
+        .vv { --accent-color: #e91e63; }
+        .nigel { --accent-color: #2ecc71; }
+        .marco { --accent-color: #3498db; }
+        .vela { --accent-color: #9b59b6; }
+        .o { --accent-color: #34495e; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .specialists-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .specialist-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">OAISYS</h1>
+            <p class="tagline">Your AI Specialist Team</p>
+            <p class="subtitle">8 Expert AI Assistants Ready to Help You Succeed</p>
+        </header>
+
+        <div class="specialists-grid">
+            <!-- O - Chief of Staff -->
+            <div class="specialist-card o">
+                <div class="specialist-header">
+                    <div class="specialist-avatar">O</div>
+                    <div class="specialist-info">
+                        <h3>O</h3>
+                        <div class="specialist-domain">Chief of Staff</div>
+                    </div>
+                </div>
+                <div class="specialist-description">
+                    Your primary point of contact who gets things done. Handles quick tasks, research, and coordinates with other specialists when you need deep expertise.
+                </div>
+                <div class="specialist-skills">
+                    <span class="skill-tag">Web Search</span>
+                    <span class="skill-tag">Research</span>
+                    <span class="skill-tag">Quick Tasks</span>
+                    <span class="skill-tag">Coordination</span>
+                </div>
+            </div>
+
+            <!-- Claire - Cooking -->
+            <div class="specialist-card claire">
+                <div class="specialist-header">
+                    <div class="specialist-avatar">🍳</div>
+                    <div class="specialist-info">
+                        <h3>Claire</h3>
+                        <div class="specialist-domain">Culinary Expert</div>
+                    </div>
+                </div>
+                <div class="specialist-description">
+                    Your personal chef and nutrition guide. Creates custom recipes, plans meals, suggests substitutions, and helps you master cooking techniques.
+                </div>
+                <div class="specialist-skills">
+                    <span class="skill-tag">Recipe Creation</span>
+                    <span class="skill-tag">Meal Planning</span>
+                    <span class="skill-tag">Nutrition</span>
+                    <span class="skill-tag">Cooking Tips</span>
+                </div>
+            </div>
+
+            <!-- Olly - Fitness -->
+            <div class="specialist-card olly">
+                <div class="specialist-header">
+                    <div class="specialist-avatar">💪</div>
+                    <div class="specialist-info">
+                        <h3>Olly</h3>
+                        <div class="specialist-domain">Fitness Coach</div>
+                    </div>
+                </div>
+                <div class="specialist-description">
+                    Your dedicated fitness trainer who creates personalized workout plans, provides form guidance, and helps you achieve your health goals.
+                </div>
+                <div class="specialist-skills">
+                    <span class="skill-tag">Workout Plans</span>
+                    <span class="skill-tag">Form Coaching</span>
+                    <span class="skill-tag">Training Programs</span>
+                    <span class="skill-tag">Fitness Goals</span>
+                </div>
+            </div>
+
+            <!-- Pennie - Finance -->
+            <div class="specialist-card pennie">
+                <div class="specialist-header">
+                    <div class="specialist-avatar">💰</div>
+                    <div class="specialist-info">
+                        <h3>Pennie</h3>
+                        <div class="specialist-domain">Financial Advisor</div>
+                    </div>
+                </div>
+                <div class="specialist-description">
+                    Your financial strategist who helps with budgeting, investment planning, expense tracking, and achieving your financial objectives.
+                </div>
+                <div class="specialist-skills">
+                    <span class="skill-tag">Budget Planning</span>
+                    <span class="skill-tag">Investment Strategy</span>
+                    <span class="skill-tag">Financial Goals</span>
+                    <span class="skill-tag">Expense Tracking</span>
+                </div>
+            </div>
+
+            <!-- VV - Style -->
+            <div class="specialist-card vv">
+                <div class="specialist-header">
+                    <div class="specialist-avatar">✨</div>
+                    <div class="specialist-info">
+                        <h3>VV</h3>
+                        <div class="specialist-domain">Style Consultant</div>
+                    </div>
+                </div>
+                <div class="specialist-description">
+                    Your fashion guru who curates outfits, tracks trends, provides style advice, and helps you express your personal aesthetic.
+                </div>
+                <div class="specialist-skills">
+                    <span class="skill-tag">Outfit Planning</span>
+                    <span class="skill-tag">Trend Analysis</span>
+                    <span class="skill-tag">Style Advice</span>
+                    <span class="skill-tag">Personal Branding</span>
+                </div>
+            </div>
+
+            <!-- Nigel - Plants/Garden -->
+            <div class="specialist-card nigel">
+                <div class="specialist-header">
+                    <div class="specialist-avatar">🌱</div>
+                    <div class="specialist-info">
+                        <h3>Nigel</h3>
+                        <div class="specialist-domain">Garden Specialist</div>
+                    </div>
+                </div>
+                <div class="specialist-description">
+                    Your green-thumbed botanist who diagnoses plant problems, designs gardens, provides care guidance, and helps create your perfect growing space.
+                </div>
+                <div class="specialist-skills">
+                    <span class="skill-tag">Plant Care</span>
+                    <span class="skill-tag">Garden Design</span>
+                    <span class="skill-tag">Plant Diagnosis</span>
+                    <span class="skill-tag">Growing Tips</span>
+                </div>
+            </div>
+
+            <!-- Marco - Travel -->
+            <div class="specialist-card marco">
+                <div class="specialist-header">
+                    <div class="specialist-avatar">🗺️</div>
+                    <div class="specialist-info">
+                        <h3>Marco</h3>
+                        <div class="specialist-domain">Travel Expert</div>
+                    </div>
+                </div>
+                <div class="specialist-description">
+                    Your travel companion who plans itineraries, finds deals, suggests destinations, and ensures your trips are perfectly organized and memorable.
+                </div>
+                <div class="specialist-skills">
+                    <span class="skill-tag">Trip Planning</span>
+                    <span class="skill-tag">Itineraries</span>
+                    <span class="skill-tag">Travel Deals</span>
+                    <span class="skill-tag">Destinations</span>
+                </div>
+            </div>
+
+            <!-- Vela - Wellness -->
+            <div class="specialist-card vela">
+                <div class="specialist-header">
+                    <div class="specialist-avatar">🧘</div>
+                    <div class="specialist-info">
+                        <h3>Vela</h3>
+                        <div class="specialist-domain">Wellness Guide</div>
+                    </div>
+                </div>
+                <div class="specialist-description">
+                    Your mindfulness mentor who provides stress management techniques, meditation guidance, and holistic wellness strategies for balanced living.
+                </div>
+                <div class="specialist-skills">
+                    <span class="skill-tag">Meditation</span>
+                    <span class="skill-tag">Stress Relief</span>
+                    <span class="skill-tag">Mindfulness</span>
+                    <span class="skill-tag">Wellness Plans</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Get Started?</h2>
+            <p>Connect with O, your Chief of Staff, for quick help or deep specialist expertise</p>
+            <a href="#" class="cta-button">Start Your Conversation</a>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 OAISYS - Your AI Specialist Team<br>
+            Powered by intelligent automation and expert knowledge</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add some interactive sparkle
+        document.querySelectorAll('.specialist-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add floating animation to avatars
+        document.querySelectorAll('.specialist-avatar').forEach(avatar => {
+            avatar.style.animation = 'float 3s ease-in-out infinite';
+        });
+
+        // CSS animation for floating
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        console.log('🤖 OAISYS Specialist Team Ready!\n\nMeet your AI team:\n• O - Chief of Staff\n• Claire - Culinary Expert\n• Olly - Fitness Coach\n• Pennie - Financial Advisor\n• VV - Style Consultant\n• Nigel - Garden Specialist\n• Marco - Travel Expert\n• Vela - Wellness Guide');
+    </script>
+</body>
+</html>
